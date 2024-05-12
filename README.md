@@ -1,42 +1,42 @@
 # asm_text_task
 Assignment on the course Computer Architecture 1st year of DAFE/RSE MIPT
 
-Взаимодействие C/C++ и языка ассемблера.
+Interaction of C/C++ and assembly language.
 
-Дан текст (последовательность символов), содержащий не более 100 элементов. Признаком конца текста считается символ с кодом '\0'. 
-Требуется:
+A text (a sequence of characters) containing not more than 100 elements is given. The character with the code '\0' is considered to be a sign of the end of the text.
 
-    – ввести текст с клавиатуры и записать его в память ЭВМ;
+Required:
+
+    - to enter the text from the keyboard and write it into the computer memory;
     
-    – определить, обладает ли этот текст заданным свойством, указанным в вашем варианте задания;
+    - determine whether this text has the given property specified in your variant of the task;
     
-    – преобразовать текст по правилу 1 вашего задания, если он обладает заданным свойством, и по правилу 2 в противном случае;
+    - convert the text according to rule 1 of your assignment, if it has the given property, and according to rule 2 otherwise;
     
-    – вывести на экран исходный и преобразованный тексты, а также номер и формулировку применённого правила.
+    - display the source and transformed texts, as well as the number and wording of the applied rule.
 
-Требования к программе:
+Program Requirements:
 
-    1 Ввод и вывод, выделение памяти, тестовая оснастка и логика выбора действий реализуются на языке C/C++.
+    1. Input and output, memory allocation, test snap-in, and action selection logic are implemented in C/C++.
     
-    2 Действия: проверка свойства, применение правила №1 и правила №2 преобразования текста, –– реализуются на языке ассемблера для архитектуры Intel x86_64 в синтаксисе AT&T. Каждое действие следует разместить в отдельном модуле (файле). Реализация действия может состоять из нескольких функций (процедур). Формулировки свойства текста и правил его преобразования для вашего варианта следует разместить в комментариях соответствующих модулей (в начале файла).
+    2. Actions: property checking, application of rule #1 and rule #2 of text conversion, -- are realized in assembly language for Intel x86_64 architecture in AT&T syntax. Each action should be placed in a separate module (file). The implementation of an action may consist of several functions (procedures). The wording of the text property and its transformation rules for your variant should be placed in the comments of the corresponding modules (at the beginning of the file).
     
-    3 Вывод исходного текста должен быть выполнен сразу после ввода, до анализа и преобразования.
+    3. Output of the source text should be performed immediately after input, before analysis and transformation.
     
-    4 Вывод преобразованного текста должен быть выполнен только после завершения преобразования.
+    4. The output of the converted text should be executed only after the conversion is complete.
     
-    5 Программа должна сохранять работоспособность при любых входных данных.
+    5. The program should remain functional with any input data.
     
-    6 Необходимо разработать «тестовую оснастку» для выполнения автоматического тестирования.
+    6. A “test snap-in” should be developed to perform automatic testing.
     
+Text property:
 
-Свойство текста:
+    Text contains no characters other than numbers and Latin letters.
 
-        Текст не содержит иных символов, кроме цифр и латинских букв.
+Rule 1:
 
-Правило 1:
+    Replace each non-zero digit with its corresponding sequentially numbered lowercase Latin letter (1->a, 2->b, etc.).
 
-    Заменить каждую ненулевую цифру соответствующей ей по порядковому номеру строчной буквой латинского алфавита (1->a, 2->b, и т.д.).
+Rule 2:
 
-Правило 2:
-
-    В каждой группе следующих подряд одинаковых символов оставить только один.
+    Leave only one character in each group of consecutive identical characters.
