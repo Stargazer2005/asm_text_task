@@ -6,7 +6,7 @@
 // Text contains no characters other than numbers and Latin letters.
 bool CheckProperty(const char* str) {
   // Check if pointer is valid
-  if (!str) return 0;
+  if (!str) return false;
 
   // Check every symbol
   for (; *str != '\0'; ++str)
