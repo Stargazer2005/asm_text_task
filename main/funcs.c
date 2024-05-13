@@ -24,7 +24,7 @@ void ApplyRule1(char* str) {
   if (!str) return;
 
   for (; *str != '\0'; ++str)
-    if ((isdigit(*str)) && (*str)) *str = (char)(96 + *str);
+    if ((isdigit(*str)) && (*str != '0')) *str = (char)(48 + *str);
 }
 
 // Rule2:
@@ -33,7 +33,7 @@ void ApplyRule2(char* str) {
   // Check if pointer is valid
   if (!str) return;
 
-  char last_unique = *str;
+  char last_unique = '\0';
   char* mod_str = str;
 
   for (; *str != '\0'; ++str)
@@ -43,5 +43,6 @@ void ApplyRule2(char* str) {
       mod_str++;
     }
 
+  *mod_str = '\0';
   str = mod_str;
 }
