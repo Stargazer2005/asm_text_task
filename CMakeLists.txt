@@ -7,6 +7,6 @@ project(TextTask LANGUAGES C CXX ASM)
 # ----------------------        Main Dir        ----------------------
 cmake_path(SET MAIN_DIR "${CMAKE_SOURCE_DIR}/main")
 
-file(GLOB_RECURSE MAIN_SOURCES "${MAIN_DIR}/*.cpp" "${MAIN_DIR}/*.c")
+file(GLOB_RECURSE MAIN_SOURCES "${MAIN_DIR}/*.cpp" "${MAIN_DIR}/*.c" "${MAIN_DIR}/*.h")
 
 add_executable(main ${MAIN_SOURCES})
