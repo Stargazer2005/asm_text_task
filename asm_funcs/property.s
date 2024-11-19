@@ -1,36 +1,41 @@
-  .globl CheckProperty
+# check_property.s
+.section .text
+.global CheckProperty
+
 CheckProperty:
-  movb    $0,         %al
-  testq   %rdi,       %rdi    # str ?= nullptr
-  je      .Ret                # if (str == nullptr) return false;
+    # Input: const char* str (passed in %rdi)
+    test %rdi, %rdi           # Check if pointer is valid
+    jz .false                 # If str is NULL, return false
 
-  pushq   %rdi                # push str on stack
-  movb    (%rdi),     %dil    # get char
+.loop:
+    movb (%rdi), %al          # Load the current character
+    inc %rdi                  # Move to the next character
+    testb %al, %al            # Check if it's the null terminator
+    jz .true                  # If null terminator, return true
 
-.Action:
-  call    isdigit
-  testl   %eax,       %eax    # ? !isdigit(*str)
-  jne     .Iteration          # if (isdigit(*str)) ++str;
+    # Check if character is a digit
+    cmpb $'0', %al
+    jb .check_alpha           # If less than '0', check if it's an alpha
+    cmpb $'9', %al
+    jbe .loop                 # If between '0' and '9', continue
 
-  call    isalpha
-  testl   %eax,       %eax    # ? !isalpha(*str)
-  jne     .Iteration          # if (isalpha(*str)) ++str;
+.check_alpha:
+    # Check if character is an alpha
+    cmpb $'A', %al
+    jb .false                 # If less than 'A', return false
+    cmpb $'z', %al
+    ja .false                 # If greater than 'z', return false
+    cmpb $'Z', %al
+    jbe .loop                 # If between 'A' and 'Z', continue
+    cmpb $'a', %al
+    jb .false                 # If less than 'a', return false
 
-  popq    %rdi                # pop str from stack
-  movb    $0,         %al     # if ((!isdigit(*str))&&(!isalpha(*str))) return false;
-  jmp     .Ret
+    jmp .loop                 # Continue checking
 
-.Iteration:
-  popq    %rdi                # pop str from stack
-  incq    %rdi                # next char
-  pushq   %rdi                # push str on stack
+.true:
+    movl $1, %eax             # Return true (1)
+    ret
 
-  movb    (%rdi),     %dil    # get char
-  testb   %dil,       %dil    # *str ?= '\0'
-  jne     .Action             # if (*str != '\0') repeat .Action
-
-  popq    %rdi                # pop str from stack
-  movb    $1,         %al     # if (*str != '\0') return true;
-
-.Ret:
-  ret     
+.false:
+    xor %eax, %eax            # Return false (0)
+    ret

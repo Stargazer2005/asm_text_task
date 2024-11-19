@@ -53,7 +53,8 @@ std::vector<RuleUnitTest> rule1_tests{
 };
 
 std::vector<RuleUnitTest> rule2_tests{
-    {"1f?Ahh;k44j:jkBh", "1f?Ah;k4j:jkBh"},
+    {"aabbcc", "abc"},
+    {"1fAhh;k44j:jkBh", "1fAh;k4j:jkBh"},
     {"B>4T>@8@h2>9U??2", "B>4T>@8@h2>9U?2"},
     {"?hjih2UjU=h<3kf:", "?hjih2UjU=h<3kf:"},
     {"j;924?@>UiUAh99f", "j;924?@>UiUAh9f"},
